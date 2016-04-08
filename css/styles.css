@@ -1,0 +1,33 @@
+#controls {
+  margin: 0 auto;
+  height: 40px;
+  width: 30%;
+}
+
+#container {
+  margin: auto;
+  width: 500px;
+}
+
+.clearsquare {
+  border: 1px solid black;
+  display: table-cell;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+}
+
+.filledsquare {
+  border: 1px solid black;
+  display: table-cell;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+  background-color: black;
+}
+
+#buttonText {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+
+}

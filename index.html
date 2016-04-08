@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sketch Pad</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script src="scripts/jquery.js"></script>
+  </head>
+  <body>
+    <div id="controls">
+      <div class="btn-group" role="group">
+        <button id="clearscreen" type="button" class="btn btn-default">Clear</button>
+        <button type="button" class="btn btn-default" id="randomize">Random</button>
+      </div>
+    </div>
+    <div id="container"></div>
+
+    <script>
+    var $grid = $('#container');
+      for (i = 0; i < 16; i++) {
+        var row = '<div>';
+          for (j = 0; j < 16; j++)
+            row += '<div class="clearsquare"></div>';
+            row += '</div>';
+            $grid.append(row);
+      }
+
+    $(document).ready(function() {
+      $("#clearscreen").click(function() {
+        jPrompt("How many suares per side would you like?");
+        $('.filledsquare').addClass("clearsquare");
+      }, function() {
+        $(this).removeClass("filledsquare")
+      });
+    });
+
+    $('.clearsquare').hover(function() {
+      $(this).addClass("filledsquare");
+    }, function() {
+      $(this).removeClass("clearsquare");
+    });
+
+
+    </script>
+
+  </body>
+</html>
