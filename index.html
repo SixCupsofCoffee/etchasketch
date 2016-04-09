@@ -10,35 +10,40 @@
   <body>
     <div id="controls">
       <div class="btn-group" role="group">
-        <button id="clearscreen" type="button" class="btn btn-default">Clear</button>
+        <button id="cleargrid" type="button" class="btn btn-default">Clear</button>
         <button type="button" class="btn btn-default" id="randomize">Random</button>
       </div>
     </div>
     <div id="container"></div>
 
     <script>
+    var numOfSides = 16;
+
+    function makeGrid() {
     var $grid = $('#container');
-      for (i = 0; i < 16; i++) {
+      for (i = 0; i < numOfSides; i++) {
         var row = '<div>';
-          for (j = 0; j < 16; j++)
+          for (j = 0; j < numOfSides; j++)
             row += '<div class="clearsquare"></div>';
             row += '</div>';
             $grid.append(row);
       }
+    }
+
+    makeGrid(numOfSides)
 
     $(document).ready(function() {
-      $("#clearscreen").click(function() {
-        jPrompt("How many suares per side would you like?");
-        $('.filledsquare').addClass("clearsquare");
-      }, function() {
-        $(this).removeClass("filledsquare")
+      $('#cleargrid').click(function() {
+        console.log("button pressed");
+        $('.clearsquare').css({'background':'white'});
+        numOfSides = prompt("How many boxes per side would you like?");
+        makeGrid(numOfSides)
       });
     });
 
+
     $('.clearsquare').hover(function() {
-      $(this).addClass("filledsquare");
-    }, function() {
-      $(this).removeClass("clearsquare");
+      $(this).css({'background':'black'});
     });
 
 
