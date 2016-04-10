@@ -23,7 +23,7 @@
     var grid = $('#container');
     var squareHeight = 480 / numOfSquares;
     var squareWidth = 480 / numOfSquares;
-    $('#container').empty();
+    grid.empty();
       for (i = 0; i < numOfSquares; i++) {
         var row = '<div>';
           for (j = 0; j < numOfSquares; j++)
@@ -47,11 +47,6 @@
         makeGrid(numOfSquares)
       });
     });
-
-
-
-
-
     </script>
 
   </body>
