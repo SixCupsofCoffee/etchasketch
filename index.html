@@ -5,24 +5,50 @@
     <title>Sketch Pad</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
   </head>
   <body>
     <div id="controls">
       <div class="btn-group" role="group">
         <button id="clearBtn" type="button" class="btn btn-default">Clear</button>
-        <button type="button" class="btn btn-default" id="randomize">Random</button>
+        <button id="randBtn" type="button" class="btn btn-default">Random</button>
       </div>
     </div>
     <div id="container"></div>
 
     <script>
+    // Initializing the number of boxes per side
     var numOfSquares = 16;
 
+    // Function that makes the grid
     function makeGrid() {
     var grid = $('#container');
-    var squareHeight = 480 / numOfSquares;
-    var squareWidth = 480 / numOfSquares;
+    var squareHeight = 640 / numOfSquares;
+    var squareWidth = 640 / numOfSquares;
+    grid.empty();
+      for (i = 0; i < numOfSquares; i++) {
+        var row = '<div>';
+          for (j = 0; j < numOfSquares; j++)
+            row += '<div class="gridSquare"></div>';
+            row += '</div>';
+            grid.append(row);
+      }
+      // The container is 640x640, so this stores the actual height and width
+      // each div/box should be for that size container based on number of
+      // boxes per side.
+      $('.gridSquare').height(squareHeight);
+      $('.gridSquare').width(squareWidth);
+      // The function that "draws"
+      $('.gridSquare').hover(function() {
+        $(this).css({'background':'black'});
+      });
+    }
+
+    // Function that makes the randomly colored grid
+    function makeColGrid() {
+    var grid = $('#container');
+    var squareHeight = 640 / numOfSquares;
+    var squareWidth = 640 / numOfSquares;
     grid.empty();
       for (i = 0; i < numOfSquares; i++) {
         var row = '<div>';
@@ -33,21 +59,55 @@
       }
       $('.gridSquare').height(squareHeight);
       $('.gridSquare').width(squareWidth);
-
+      // The function that "draws" random colors
       $('.gridSquare').hover(function() {
-        $(this).css({'background':'black'});
+        var randomColor = Math.floor(Math.random()*16777215).toString(16);
+        $(this).css({'background': '#'+randomColor});
       });
     }
 
+    // Initially calling the regular function
     makeGrid(numOfSquares)
 
+    // The "Clear" button handler
     $(document).ready(function() {
       $('#clearBtn').click(function() {
-        numOfSquares = prompt("How many boxes per side would you like?");
+        numOfSquares = prompt("How many boxes per side? (2 through 64)");
+        if (numOfSquares === null) {
+          return;
+        } else {
+        while ((numOfSquares > 64) || (numOfSquares < 2)) {
+          alert("That number is out of range, please try again");
+          numOfSquares = prompt("Now, how many boxes per side? (2 through 64)");
+          if (numOfSquares === null) {
+            return;
+          }
+        }}
         makeGrid(numOfSquares)
       });
     });
+
+    // Randomize button handler
+    $(document).ready(function() {
+      $('#randBtn').click(function() {
+        numOfSquares = prompt("How many boxes per side? (2 through 64)");
+        if (numOfSquares === null) {
+          return;
+        } else {
+        while ((numOfSquares > 64) || (numOfSquares < 2)) {
+          alert("That number is out of range, please try again");
+          numOfSquares = prompt("Now, how many boxes per side? (2 through 64)");
+          if (numOfSquares === null) {
+            return;
+          }
+        }}
+        makeColGrid(numOfSquares)
+      });
+    });
     </script>
+    <div id="pagetitle"><h1>Etch-A-Sketch Pad</h1></div>
+    <div id="pagecontent"><p>This is a simple JavaScript program that lets you draw on the page like you would on an Etch-A-Sketch: continuously, without lifting the "pencil."</p>
+      <p>The starting grid is 16x16 squares. Press "Clear" to clear your drawing and to select a different number of starting squares, from 2x2 to 64x64. Press "Random" to clear your drawing, select a different number of starting squares, and draw with random colors. You'll feel like your drawing with the horn of a unicorn.</p></div>
 
   </body>
 </html>

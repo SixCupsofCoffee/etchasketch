@@ -1,17 +1,33 @@
 #controls {
-  margin: 0 auto;
+  margin: auto;
   height: 40px;
-  width: 30%;
+  width: 140px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
 }
 
 #container {
   margin: auto;
-  width: 480px;
-  height: 480px;
+  width: 640px;
+  height: 640px;
+  padding-top: 20px;
 }
 
 .gridSquare {
   display: table-cell;
   vertical-align: middle;
   outline: 1px solid #000;
+}
+
+#pagetitle {
+  margin: auto;
+  width: 640px;
+  justify-content: center;
+}
+
+#pagecontent {
+  margin: auto;
+  width: 640px;
+  justify-content: center;
 }
